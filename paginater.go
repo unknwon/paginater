@@ -48,9 +48,23 @@ func (p *Paginater) HasPrevious() bool {
 	return p.current > 1
 }
 
+func (p *Paginater) Previous() int {
+	if !p.HasPrevious() {
+		return p.current
+	}
+	return p.current - 1
+}
+
 // HasNext returns true if there is a next page relative to current page.
 func (p *Paginater) HasNext() bool {
 	return p.total > p.current*p.pagingNum
+}
+
+func (p *Paginater) Next() int {
+	if !p.HasNext() {
+		return p.current
+	}
+	return p.current + 1
 }
 
 // IsLast returns true if current page is the last page.
