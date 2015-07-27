@@ -32,8 +32,8 @@ func main() {
 `demo.html`
 
 ```html
-{{if not .Page.IsFirst}}[First]{{end}}
-{{if .Page.HasPrevious}}[Previous]{{end}}
+{{if not .Page.IsFirst}}[First](1){{end}}
+{{if .Page.HasPrevious}}[Previous]({{.Page.Previous}}){{end}}
 
 {{range .Page.Pages}}
 	{{if eq .Num -1}}
@@ -43,14 +43,14 @@ func main() {
 	{{end}}
 {{end}}
 
-{{if .Page.HasNext}}[Next]{{end}}
-{{if not .Page.IsLast}}[Last]{{end}}
+{{if .Page.HasNext}}[Next]({{.Page.Next}}){{end}}
+{{if not .Page.IsLast}}[Last]({{.Page.TotalPages}}){{end}}
 ```
 
 Possible output:
 
 ```
-[First] [Previous] ... 2 3(current) 4 ... [Next] [Last]
+[First](1) [Previous](2) ... 2 3(current) 4 ... [Next](4) [Last](5)
 ```
 
 As you may guess, if the `Page` value is `-1`, you should print `...` in the HTML as common practice.
