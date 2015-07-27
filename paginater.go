@@ -25,6 +25,9 @@ type Paginater struct {
 
 // New initialize a new pagination calculation and returns a Paginater as result.
 func New(total, pagingNum, current, numPages int) *Paginater {
+	if pagingNum <= 0 {
+		pagingNum = 1
+	}
 	if current <= 0 {
 		current = 1
 	}
@@ -124,13 +127,20 @@ func (p *Paginater) Pages() []*Page {
 	if previousNum > p.current-1 {
 		previousNum -= previousNum - (p.current - 1)
 	}
-	if p.current-previousNum > 1 {
+	nextNum := p.numPages - previousNum - 1
+	if p.current+nextNum > p.TotalPages() {
+		delta := nextNum - (p.TotalPages() - p.current)
+		nextNum -= delta
+		previousNum += delta
+	}
+
+	offsetVal := p.current - previousNum
+	if offsetVal > 1 {
 		numPages++
 		maxIdx++
 		offsetIdx = 1
 	}
 
-	nextNum := p.numPages - previousNum - 1
 	if p.current+nextNum < p.TotalPages() {
 		numPages++
 		hasMoreNext = true
@@ -148,7 +158,6 @@ func (p *Paginater) Pages() []*Page {
 	}
 
 	// Check previous pages.
-	offsetVal := p.current - previousNum
 	for i := 0; i < previousNum; i++ {
 		pages[offsetIdx+i] = &Page{i + offsetVal, false}
 	}
