@@ -167,6 +167,27 @@ func Test_Paginater(t *testing.T) {
 			So(pages[2].IsCurrent(), ShouldBeTrue)
 			So(pages[3].Num(), ShouldEqual, 5)
 			So(pages[3].IsCurrent(), ShouldBeFalse)
+
+			// ... 4 5 6 7 8 9 10
+			p = New(100, 10, 9, 7)
+			pages = p.Pages()
+			So(len(pages), ShouldEqual, 8)
+			So(pages[0].Num(), ShouldEqual, -1)
+			So(pages[0].IsCurrent(), ShouldBeFalse)
+			So(pages[1].Num(), ShouldEqual, 4)
+			So(pages[1].IsCurrent(), ShouldBeFalse)
+			So(pages[2].Num(), ShouldEqual, 5)
+			So(pages[2].IsCurrent(), ShouldBeFalse)
+			So(pages[3].Num(), ShouldEqual, 6)
+			So(pages[3].IsCurrent(), ShouldBeFalse)
+			So(pages[4].Num(), ShouldEqual, 7)
+			So(pages[4].IsCurrent(), ShouldBeFalse)
+			So(pages[5].Num(), ShouldEqual, 8)
+			So(pages[5].IsCurrent(), ShouldBeFalse)
+			So(pages[6].Num(), ShouldEqual, 9)
+			So(pages[6].IsCurrent(), ShouldBeTrue)
+			So(pages[7].Num(), ShouldEqual, 10)
+			So(pages[7].IsCurrent(), ShouldBeFalse)
 		})
 
 		Convey("Has more next pages", func() {
