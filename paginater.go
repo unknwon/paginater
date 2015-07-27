@@ -121,12 +121,16 @@ func (p *Paginater) Pages() []*Page {
 
 	// Check more previous and next pages.
 	previousNum := getMiddleIdx(p.numPages) - 1
-	nextNum := p.numPages - previousNum - 1
+	if previousNum > p.current-1 {
+		previousNum -= previousNum - (p.current - 1)
+	}
 	if p.current-previousNum > 1 {
 		numPages++
 		maxIdx++
 		offsetIdx = 1
 	}
+
+	nextNum := p.numPages - previousNum - 1
 	if p.current+nextNum < p.TotalPages() {
 		numPages++
 		hasMoreNext = true
