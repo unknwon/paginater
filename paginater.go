@@ -91,6 +91,11 @@ func (p *Paginater) TotalPages() int {
 	return p.total/p.pagingNum + 1
 }
 
+// Current returns current page number.
+func (p *Paginater) Current() int {
+	return p.current
+}
+
 // Page presents a page in the paginater.
 type Page struct {
 	num       int
