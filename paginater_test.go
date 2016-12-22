@@ -23,6 +23,7 @@ import (
 func Test_Paginater(t *testing.T) {
 	Convey("Basic logics", t, func() {
 		p := New(0, -1, -1, 0)
+		So(p.PagingNum(), ShouldEqual, 1)
 		So(p.IsFirst(), ShouldBeTrue)
 		So(p.HasPrevious(), ShouldBeFalse)
 		So(p.Previous(), ShouldEqual, 1)
@@ -32,18 +33,21 @@ func Test_Paginater(t *testing.T) {
 		So(p.Total(), ShouldEqual, 0)
 
 		p = New(1, 10, 2, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeTrue)
 		So(p.HasPrevious(), ShouldBeFalse)
 		So(p.HasNext(), ShouldBeFalse)
 		So(p.IsLast(), ShouldBeTrue)
 
 		p = New(10, 10, 1, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeTrue)
 		So(p.HasPrevious(), ShouldBeFalse)
 		So(p.HasNext(), ShouldBeFalse)
 		So(p.IsLast(), ShouldBeTrue)
 
 		p = New(11, 10, 1, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeTrue)
 		So(p.HasPrevious(), ShouldBeFalse)
 		So(p.HasNext(), ShouldBeTrue)
@@ -51,6 +55,7 @@ func Test_Paginater(t *testing.T) {
 		So(p.IsLast(), ShouldBeFalse)
 
 		p = New(11, 10, 2, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeFalse)
 		So(p.HasPrevious(), ShouldBeTrue)
 		So(p.Previous(), ShouldEqual, 1)
@@ -58,12 +63,14 @@ func Test_Paginater(t *testing.T) {
 		So(p.IsLast(), ShouldBeTrue)
 
 		p = New(20, 10, 2, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeFalse)
 		So(p.HasPrevious(), ShouldBeTrue)
 		So(p.HasNext(), ShouldBeFalse)
 		So(p.IsLast(), ShouldBeTrue)
 
 		p = New(25, 10, 2, 0)
+		So(p.PagingNum(), ShouldEqual, 10)
 		So(p.IsFirst(), ShouldBeFalse)
 		So(p.HasPrevious(), ShouldBeTrue)
 		So(p.HasNext(), ShouldBeTrue)
