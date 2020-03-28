@@ -1,5 +1,9 @@
-Paginater [![Build Status](https://travis-ci.org/Unknwon/paginater.svg?branch=master)](https://travis-ci.org/Unknwon/paginater)
-=========
+# Paginater
+
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/unknwon/paginater/Go?logo=github&style=for-the-badge)](https://github.com/unknwon/paginater/actions?query=workflow%3AGo)
+[![codecov](https://img.shields.io/codecov/c/github/unknwon/paginater/master?logo=codecov&style=for-the-badge)](https://codecov.io/gh/unknwon/paginater)
+[![GoDoc](https://img.shields.io/badge/GoDoc-Reference-blue?style=for-the-badge&logo=go)](https://pkg.go.dev/github.com/unknwon/paginater?tab=doc)
+[![Sourcegraph](https://img.shields.io/badge/view%20on-Sourcegraph-brightgreen.svg?style=for-the-badge&logo=sourcegraph)](https://sourcegraph.com/github.com/unknwon/paginater)
 
 Package paginater is a helper module for custom pagination calculation.
 
