@@ -142,7 +142,6 @@ func (p *Paginater) Pages() []*Page {
 	}
 
 	numPages := p.numPages
-	maxIdx := numPages - 1
 	offsetIdx := 0
 	hasMoreNext := false
 
@@ -161,7 +160,6 @@ func (p *Paginater) Pages() []*Page {
 	offsetVal := p.current - previousNum
 	if offsetVal > 1 {
 		numPages++
-		maxIdx++
 		offsetIdx = 1
 	}
 
